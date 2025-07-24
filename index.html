@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Two Months</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+      --glass-bg: rgba(255,255,255,0.82);
+      --glass-blur: blur(14px);
+      --accent: #f67280;
+      --accent2: #56ccf2;
+      --shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+      --border: 2px solid #f67280;
+      --ribbon: repeating-linear-gradient(135deg, #f67280 0 10px, #fff 10px 20px);
+      --ribbon-shadow: 0 2px 8px #f6728033;
+      --ribbon-height: 44px;
+      --letter-radius: 26px;
+      --letter-padding: 2.7rem 2.2rem 3.2rem 2.2rem;
+      --container-radius: 30px;
+      --container-padding: 2.7rem 2.2rem;
+      --container-shadow: 0 12px 40px 0 rgba(31,38,135,0.22);
+      --container-border: 1.5px solid #b3c6e0;
+      --container-bg: rgba(255,255,255,0.92);
+      --poem-bg: linear-gradient(90deg, #f7c87333 0%, #b388ff22 100%);
+      --poem-radius: 18px;
+      --poem-shadow: 0 2px 12px #b388ff22;
+      --signature-shadow: 0 2px 8px #f6728033;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--main-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 2s;
+      overflow: hidden;
+      position: relative;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Decorative background shapes */
+    .bg-shape {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      filter: blur(2px);
+      animation: floatBg 18s ease-in-out infinite alternate;
+    }
+    .bg-shape1 {
+      width: 340px; height: 340px;
+      left: -120px; top: -80px;
+      background: radial-gradient(circle at 60% 40%, #f67280 0%, #fff0 80%);
+      animation-delay: 0s;
+    }
+    .bg-shape2 {
+      width: 260px; height: 260px;
+      right: -90px; top: 60px;
+      background: radial-gradient(circle at 40% 60%, #b388ff 0%, #fff0 80%);
+      animation-delay: 2s;
+    }
+    .bg-shape3 {
+      width: 200px; height: 200px;
+      left: 40vw; bottom: -80px;
+      background: radial-gradient(circle at 50% 50%, #56ccf2 0%, #fff0 80%);
+      animation-delay: 4s;
+    }
+    @keyframes floatBg {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-40px) scale(1.08);}
+    }
+
+    /* Floating hearts background columns */
+    .hearts-bg {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hearts-bg.show {
+      display: block;
+    }
+    .hearts-col {
+      position: absolute;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hearts-col.left1 { left: 1vw; }
+    .hearts-col.left2 { left: 5vw; }
+    .hearts-col.left3 { left: 9vw; }
+    .hearts-col.right1 { right: 1vw; }
+    .hearts-col.right2 { right: 5vw; }
+    .hearts-col.right3 { right: 9vw; }
+    .heart-float {
+      opacity: 0.82;
+      filter: drop-shadow(0 4px 12px #0002);
+      will-change: transform, opacity;
+      animation: heartFloat var(--duration,7s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      z-index: 2;
+      margin: 12px 0;
+      transition: filter 0.3s;
+    }
+    .heart-float:hover {
+      filter: drop-shadow(0 0 16px #f6728055) brightness(1.2);
+      opacity: 1;
+    }
+    @keyframes heartFloat {
+      0%   { transform: translateY(0) scale(var(--size,1)) rotate(-10deg);}
+      30%  { transform: translateY(-40px) scale(calc(var(--size,1.08))) rotate(8deg);}
+      60%  { transform: translateY(20px) scale(calc(var(--size,0.96))) rotate(-8deg);}
+      100% { transform: translateY(0) scale(var(--size,1)) rotate(-10deg);}
+    }
+
+    /* Glassy container */
+    .container {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      background: var(--container-bg);
+      box-shadow: var(--container-shadow);
+      border-radius: var(--container-radius);
+      padding: var(--container-padding);
+      max-width: 700px;
+      max-height: 94vh;
+      overflow-y: auto;
+      backdrop-filter: blur(14px);
+      border: var(--container-border);
+      animation: popIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      border-top: 4px solid #b388ff44;
+      border-bottom: 4px solid #f6728033;
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.92) translateY(40px);}
+      80% { opacity: 1; transform: scale(1.04) translateY(-8px);}
+      100% { opacity: 1; transform: scale(1) translateY(0);}
+    }
+
+    /* Poem block */
+    .poem-block {
+      background: var(--poem-bg);
+      border-radius: var(--poem-radius);
+      box-shadow: var(--poem-shadow);
+      padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+      margin-bottom: 2.2rem;
+      font-size: 1.13rem;
+      font-family: 'Playfair Display', serif;
+      color: #2d3a4b;
+      border-left: 6px solid #f67280;
+      border-right: 6px solid #56ccf2;
+      letter-spacing: 0.01em;
+      line-height: 1.7;
+      position: relative;
+      overflow: hidden;
+    }
+    .poem-block span {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      color: #2f80ed;
+      font-size: 1.1em;
+      letter-spacing: 0.02em;
+      background: #fff7;
+      border-radius: 8px;
+      padding: 0.1em 0.5em;
+      margin-left: 0.3em;
+    }
+
+    input[type="text"] {
+      padding: 0.7rem;
+      margin-top: 1rem;
+      width: 65%;
+      border: 1.5px solid #b3c6e0;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 2px 8px #a1c4fd22;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #56ccf2;
+      box-shadow: 0 0 12px #56ccf288;
+      animation: inputPulse 0.7s;
+    }
+    @keyframes inputPulse {
+      0% { box-shadow: 0 0 0 #56ccf200; }
+      50% { box-shadow: 0 0 18px #56ccf288; }
+      100% { box-shadow: 0 0 12px #56ccf288; }
+    }
+
+    button {
+      margin-top: 1.2rem;
+      padding: 0.6rem 1.5rem;
+      background: linear-gradient(90deg, #56ccf2 0%, #2f80ed 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.1s, box-shadow 0.3s;
+      box-shadow: 0 2px 12px #56ccf244;
+      letter-spacing: 0.02em;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #2f80ed 0%, #56ccf2 100%);
+      transform: scale(1.07);
+      box-shadow: 0 4px 20px #56ccf288;
+    }
+    button:active {
+      background: #2f80ed;
+      transform: scale(0.97);
+    }
+
+    /* Letter glassy card */
+    .letter {
+      display: none;
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+      filter: blur(8px);
+      transition: opacity 1.2s cubic-bezier(.68,-0.55,.27,1.55), 
+                  transform 1.2s cubic-bezier(.68,-0.55,.27,1.55),
+                  filter 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      white-space: pre-wrap;
+      text-align: left;
+      margin-top: 2.2rem;
+      background: linear-gradient(135deg, #fff7fa 0%, #e3f0ff 100%);
+      padding: var(--letter-padding);
+      border-radius: var(--letter-radius);
+      box-shadow: 0 8px 32px #56ccf211, 0 2px 8px #f6728033;
+      font-size: 1.13rem;
+      color: #2d3a4b;
+      position: relative;
+      border: var(--border);
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      overflow: hidden;
+      z-index: 3;
+      border-top: 4px solid #b388ff44;
+      border-bottom: 4px solid #f6728033;
+      backdrop-filter: blur(8px);
+    }
+    .letter.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+      animation: letterPop 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes letterPop {
+      0% { opacity: 0; transform: scale(0.92) translateY(40px); filter: blur(8px);}
+      60% { opacity: 1; transform: scale(1.04) translateY(-8px); filter: blur(2px);}
+      100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0);}
+    }
+
+    /* Full-width ribbon */
+    .letter-header {
+      width: 100%;
+      height: var(--ribbon-height);
+      background: var(--ribbon);
+      border-radius: 18px 18px 0 0;
+      margin-left: -2.2rem;
+      margin-right: -2.2rem;
+      margin-top: calc(-1 * var(--letter-padding));
+      margin-bottom: 1.5rem;
+      box-shadow: var(--ribbon-shadow);
+      display: block;
+      position: relative;
+      overflow: visible;
+      min-width: calc(100% + 4.4rem);
+      border-top: 2px solid #f67280;
+      border-bottom: 2px solid #b388ff44;
+    }
+
+    .letter strong {
+      font-family: 'Pacifico', cursive;
+      color: #f67280;
+      font-size: 1.2em;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 8px #f6728033;
+    }
+    .letter .signature {
+      display: block;
+      margin-top: 2.5rem;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5em;
+      color: #f67280;
+      text-align: right;
+      position: relative;
+      text-shadow: var(--signature-shadow);
+    }
+    .letter .signature::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 18px;
+      background: url('https://svgshare.com/i/14wA.svg') no-repeat center/contain;
+      margin: 0.2em 0 0 auto;
+      opacity: 0.5;
+    }
+    .heart {
+      position: absolute;
+      right: 24px;
+      bottom: 18px;
+      width: 38px;
+      height: 38px;
+      opacity: 0;
+      transform: scale(0.7);
+      animation: heartPop 1.2s 0.5s forwards;
+      pointer-events: none;
+    }
+    .letter.show .heart {
+      opacity: 1;
+    }
+    @keyframes heartPop {
+      0% { opacity: 0; transform: scale(0.7);}
+      60% { opacity: 1; transform: scale(1.2);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+
+    /* Confetti overlay for letter only */
+    .letter-confetti {
+      display: none;
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .letter.show ~ .letter-confetti {
+      display: block;
+    }
+
+    /* Clouds for riddle animation - OUTSIDE the riddle block */
+    .riddle-clouds-bg {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%;
+      height: 220px;
+      pointer-events: none;
+      z-index: 2;
+      overflow: visible;
+      transition: opacity 0.7s;
+      display: block;
+    }
+    .riddle-clouds-bg.hide {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.7s;
+    }
+    .riddle-cloud {
+      position: absolute;
+      opacity: 0.7;
+      will-change: transform;
+      filter: blur(0.5px);
+      animation: riddleCloudMove 22s linear infinite;
+    }
+    .riddle-cloud.c1 { top: 10px; left: -80px; width: 90px; animation-duration: 22s; animation-delay: 0s;}
+    .riddle-cloud.c2 { top: 40px; left: -100px; width: 70px; animation-duration: 18s; animation-delay: 2s;}
+    .riddle-cloud.c3 { top: 80px; left: -60px; width: 60px; animation-duration: 25s; animation-delay: 4s;}
+    .riddle-cloud.c4 { top: 120px; left: -120px; width: 100px; animation-duration: 20s; animation-delay: 6s;}
+    .riddle-cloud.c5 { top: 30px; left: 100%; width: 80px; animation-duration: 21s; animation-delay: 1s; animation-direction: reverse;}
+    .riddle-cloud.c6 { top: 90px; left: 100%; width: 60px; animation-duration: 19s; animation-delay: 3s; animation-direction: reverse;}
+    .riddle-cloud.c7 { top: 60px; left: 100%; width: 70px; animation-duration: 23s; animation-delay: 5s; animation-direction: reverse;}
+    .riddle-cloud.c8 { top: 0px; left: 100%; width: 110px; animation-duration: 26s; animation-delay: 7s; animation-direction: reverse;}
+    @keyframes riddleCloudMove {
+      0% { transform: translateX(0);}
+      100% { transform: translateX(110vw);}
+    }
+
+    /* Clouds for riddle background - OUTSIDE the container, fixed to corners */
+    .riddle-bg-clouds {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.7s;
+    }
+    .riddle-bg-clouds.hide {
+      opacity: 0;
+      transition: opacity 0.7s;
+    }
+    .riddle-bg-cloud {
+      position: absolute;
+      opacity: 0.7;
+      will-change: transform;
+      filter: blur(0.5px);
+    }
+    /* Animate clouds up/down and horizontally for a dreamy effect */
+    @keyframes cloudFloatLeft {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(28px) translateX(12vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatLeft2 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(18px) translateX(8vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatLeft3 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(22px) translateX(10vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatLeft4 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(14px) translateX(6vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatLeft5 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(20px) translateX(5vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatRight {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(28px) translateX(-12vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatRight2 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(18px) translateX(-8vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatRight3 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(22px) translateX(-10vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatRight4 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(14px) translateX(-6vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    @keyframes cloudFloatRight5 {
+      0%   { transform: translateY(0) translateX(0);}
+      50%  { transform: translateY(20px) translateX(-5vw);}
+      100% { transform: translateY(0) translateX(0);}
+    }
+    /* Left clouds */
+    .riddle-bg-cloud.left.c1 { top: 2vw; left: -6vw; width: 180px; animation: cloudFloatLeft 36s linear infinite; animation-delay: 0s;}
+    .riddle-bg-cloud.left.c2 { top: 7vw; left: -4vw; width: 120px; animation: cloudFloatLeft2 32s linear infinite; animation-delay: 3s;}
+    .riddle-bg-cloud.left.c3 { top: 13vw; left: 2vw; width: 90px; animation: cloudFloatLeft3 28s linear infinite; animation-delay: 6s;}
+    .riddle-bg-cloud.left.c4 { top: 18vw; left: -2vw; width: 70px; animation: cloudFloatLeft4 24s linear infinite; animation-delay: 9s;}
+    .riddle-bg-cloud.left.c5 { top: 22vw; left: 5vw; width: 60px; opacity: 0.5; animation: cloudFloatLeft5 30s linear infinite; animation-delay: 12s;}
+    /* Right clouds */
+    .riddle-bg-cloud.right.c1 { top: 0vw; right: -8vw; width: 160px; animation: cloudFloatRight 38s linear infinite; animation-delay: 2s;}
+    .riddle-bg-cloud.right.c2 { top: 6vw; right: -4vw; width: 110px; animation: cloudFloatRight2 34s linear infinite; animation-delay: 5s;}
+    .riddle-bg-cloud.right.c3 { top: 12vw; right: 3vw; width: 90px; animation: cloudFloatRight3 29s linear infinite; animation-delay: 8s;}
+    .riddle-bg-cloud.right.c4 { top: 17vw; right: 0vw; width: 70px; animation: cloudFloatRight4 26s linear infinite; animation-delay: 11s;}
+    .riddle-bg-cloud.right.c5 { top: 21vw; right: 6vw; width: 60px; opacity: 0.5; animation: cloudFloatRight5 31s linear infinite; animation-delay: 14s;}
+  </style>
+</head>
+<body>
+  <!-- Decorative background shapes -->
+  <div class="bg-shape bg-shape1"></div>
+  <div class="bg-shape bg-shape2"></div>
+  <div class="bg-shape bg-shape3"></div>
+
+  <!-- Clouds in the background, fixed at upper left and right corners, OUTSIDE the container -->
+  <div class="riddle-bg-clouds" id="riddle-bg-clouds" aria-hidden="true">
+    <!-- Left clouds -->
+    <svg class="riddle-bg-cloud left c1" viewBox="0 0 120 60"><ellipse cx="60" cy="30" rx="60" ry="30" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud left c2" viewBox="0 0 100 50"><ellipse cx="50" cy="25" rx="50" ry="25" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud left c3" viewBox="0 0 90 45"><ellipse cx="45" cy="22.5" rx="45" ry="22.5" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud left c4" viewBox="0 0 70 35"><ellipse cx="35" cy="17.5" rx="35" ry="17.5" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud left c5" viewBox="0 0 60 30"><ellipse cx="30" cy="15" rx="30" ry="15" fill="#fff"/></svg>
+    <!-- Right clouds -->
+    <svg class="riddle-bg-cloud right c1" viewBox="0 0 110 55"><ellipse cx="55" cy="27.5" rx="55" ry="27.5" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud right c2" viewBox="0 0 100 50"><ellipse cx="50" cy="25" rx="50" ry="25" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud right c3" viewBox="0 0 90 45"><ellipse cx="45" cy="22.5" rx="45" ry="22.5" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud right c4" viewBox="0 0 70 35"><ellipse cx="35" cy="17.5" rx="35" ry="17.5" fill="#fff"/></svg>
+    <svg class="riddle-bg-cloud right c5" viewBox="0 0 60 30"><ellipse cx="30" cy="15" rx="30" ry="15" fill="#fff"/></svg>
+  </div>
+
+  <!-- Floating hearts background, only shown when letter is shown -->
+  <div class="hearts-bg" id="hearts-bg">
+    <!-- Left columns -->
+    <div class="hearts-col left1">
+      <svg class="heart-float" style="--size:1.5; --duration:7.2s; --delay:0s; fill:#f67280;" width="44" height="44" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.2; --duration:6.5s; --delay:1.2s; fill:#b388ff;" width="36" height="36" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.4; --duration:7.8s; --delay:0.7s; fill:#56ccf2;" width="40" height="40" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.1; --duration:6.9s; --delay:2.2s; fill:#ffd166;" width="32" height="32" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.3; --duration:7.6s; --delay:1.7s; fill:#6fcf97;" width="38" height="38" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+    </div>
+    <div class="hearts-col left2">
+      <svg class="heart-float" style="--size:1.1; --duration:7.5s; --delay:0.4s; fill:#ff6f91;" width="32" height="32" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.3; --duration:6.8s; --delay:1.7s; fill:#f7c873;" width="36" height="36" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.2; --duration:8.1s; --delay:2.3s; fill:#b388ff;" width="34" height="34" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.4; --duration:7.9s; --delay:0.9s; fill:#56ccf2;" width="38" height="38" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+    </div>
+    <div class="hearts-col left3">
+      <svg class="heart-float" style="--size:1.2; --duration:7.1s; --delay:0.8s; fill:#ffd166;" width="34" height="34" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.1; --duration:6.3s; --delay:2.1s; fill:#ff6f91;" width="30" height="30" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.3; --duration:7.8s; --delay:1.5s; fill:#6fcf97;" width="36" height="36" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+    </div>
+    <!-- Right columns -->
+    <div class="hearts-col right1">
+      <svg class="heart-float" style="--size:1.5; --duration:7.2s; --delay:0.5s; fill:#f7c873;" width="44" height="44" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.2; --duration:6.5s; --delay:1.2s; fill:#b388ff;" width="36" height="36" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.4; --duration:7.8s; --delay:0.7s; fill:#56ccf2;" width="40" height="40" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.1; --duration:6.9s; --delay:2.2s; fill:#ffd166;" width="32" height="32" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.3; --duration:7.6s; --delay:1.7s; fill:#6fcf97;" width="38" height="38" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+    </div>
+    <div class="hearts-col right2">
+      <svg class="heart-float" style="--size:1.1; --duration:7.5s; --delay:0.4s; fill:#ff6f91;" width="32" height="32" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.3; --duration:6.8s; --delay:1.7s; fill:#f7c873;" width="36" height="36" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.2; --duration:8.1s; --delay:2.3s; fill:#b388ff;" width="34" height="34" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.4; --duration:7.9s; --delay:0.9s; fill:#56ccf2;" width="38" height="38" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+    </div>
+    <div class="hearts-col right3">
+      <svg class="heart-float" style="--size:1.2; --duration:7.1s; --delay:0.8s; fill:#ffd166;" width="34" height="34" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.1; --duration:6.3s; --delay:2.1s; fill:#ff6f91;" width="30" height="30" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+      <svg class="heart-float" style="--size:1.3; --duration:7.8s; --delay:1.5s; fill:#6fcf97;" width="36" height="36" viewBox="0 0 32 29.6"><path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"/></svg>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Main content (riddle, input, letter, etc) -->
+    <div class="poem-block" id="poem-block">
+      I am the quiet beneath a storm’s roar.<br>
+      I do not flee, though pain I store.<br><br>
+      I wear the weight of unseen years,<br>
+      Swallowing doubt, and smiling through tears.<br><br>
+      I do not conquer, I do not yield—<br>
+      Yet in every loss, I never leave the field.<br><br>
+      <span>What am I?</span>
+    </div>
+    <input type="text" id="answer" placeholder="Type your answer here..." autocomplete="off" />
+    <br>
+    <button onclick="checkAnswer()">Submit</button>
+
+    <!-- Hint box -->
+    <div id="hint-box" style="margin-top:1.2rem;">
+      <button id="hint-btn" type="button" style="padding:0.4em 1.2em; border-radius:8px; background:#ffd166; color:#2d3a4b; font-family:'Quicksand',sans-serif; font-size:1em; font-weight:600; border:none; box-shadow:0 2px 8px #ffd16644; cursor:pointer;" onclick="document.getElementById('hint-text').style.display='inline-block';this.disabled=true;this.innerText='Hint shown!'">
+        Need a Hint?
+      </button>
+      <span id="hint-text" style="display:none; margin-left:1em; color:#f67280; background:#fffbe7; border-radius:8px; padding:0.3em 0.8em; font-family:'Quicksand',sans-serif; font-weight:600;">
+        It's a 6 letter word!
+      </span>
+      <br>
+      <button id="hint-btn-2" type="button" style="margin-top:0.7em; padding:0.4em 1.2em; border-radius:8px; background:#b388ff; color:#2d3a4b; font-family:'Quicksand',sans-serif; font-size:1em; font-weight:600; border:none; box-shadow:0 2px 8px #b388ff44; cursor:pointer;" onclick="document.getElementById('hint-text-2').style.display='inline-block';this.disabled=true;this.innerText='Hint shown!'">
+        Need another hint?
+      </button>
+      <span id="hint-text-2" style="display:none; margin-left:1em; color:#6c47a6; background:#f6f0ff; border-radius:8px; padding:0.3em 0.8em; font-family:'Quicksand',sans-serif; font-weight:600;">
+        It begins and ends with the same letter!
+      </span>
+    </div>
+
+    <div class="letter" id="letter">
+      <div class="letter-header"></div>
+      <strong>Stanley,</strong> <br>
+      Happy two months, love.<br>
+      Two months ra daw, pero sa tinuod, murag dugay na kaayo ta. Murag dugay na ta nga kita ra sa matag adlaw—panagsaba, hilom, katawa. Bisan pa'g boring nga adlaw, okay ra gihapon basta naa ka.
+
+      Sa kadugay nato nga magkauban, bisan pa'g walay mga event o adventure, usahay kulang og tulog—mas nagkadugay, mas nasabtan nako akong kaugalingon. Mas klaro na gyud sa ako nga ikaw akong gusto. Ikaw akong pilion. Ug ikaw ra gihapon akong pilion pirmi.
+
+      Love, kabalo ka sa akong mga insecurities. Kabalo ka nga naa koy mga kulang, ug usahay murag grabe na kaayo. Pero bisan pa ana, gihatagan ko nimo og lugar. Imo kong gipili. Bisan pa sa akong mga kahuyang, gihigugma gihapon ko nimo. Thank you, love. Sa tinuod, di gihapon ko kasabot nganong ako imong gipili, pero usa ra akong masulti—grabe gyud ko ka-grateful nga naa ka sa akong kinabuhi.
+
+      Nakita nako imong paningkamot atong niapil ka sa competition. Kita nako imong effort, imong disiplina, imong bright nga utok, ug imong determinasyon. Murag ako na hinuon ang napildi sa kakilig ug sa pride nga akong nabati. Atong panahona, niingon gyud ko sa akong kaugalingon: gusto ko nga ako ang naa sa imong kilid sa tanan nimong kadaogan sa kinabuhi. Ako ang mag-cheer nimo, ang muhatag tubig, ang mag-text ug “kaya ra lagi na nimo, love.”
+
+      Ug bisan sa mga adlaw nga walay competition, bisan walay kadaogan—naa ra gihapon ko. Naa ko sa imong kilid. Sa adlaw nga malipay ka. Sa adlaw nga murag bug-at imong paminaw. Sa adlaw nga mutan-aw lang ka nako, nga way istorya.
+      Naa ko.
+
+      Ikaw ra gyud akong gusto. Giingon na nako na sauna, pero karon, mas lawom na akong gibati. Karon, kabalo na gyud ko nga ikaw akong forever person. Dili ni OA, dili drama—tinuod lang gyud. Ikaw akong gusto kuyogan sa tanang version sa akong kaugalingon: kung okay ko, kung dili okay, kung successful ko, o bisan kung walay klaro ang akong kinabuhi. Ikaw gihapon. Ikaw pirmi.
+
+      Sa mga umaabot nga bulan, mga tuig—akong saad: ikaw ra gihapon akong pilion. Pilion tika bisan sa panahong lisod ko sabton. Pilion tika bisan pa layo pata sa atong mga damgo. Basta ikaw akong kuyog, makaya ra nako tanan.
+
+      So, happy monthsary, love. Dili lang ni celebration sa adlaw nga nagkauyab ta. Celebration ni sa atong tinuod nga gugma, sa atong pagkuyog, sa tanang gamay nga moments nga naghimo og dako kaayong kalipay sa akong kasingkasing.
+
+      Ug sa tanan nakong saad—ang pinaka-importante:
+
+      Ako imong pilion pirmi. <br>
+      Yours,<br>
+      <strong>Angel</strong> <br>
+      <svg class="heart" viewBox="0 0 32 29.6">
+        <path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4
+        c0,6.1,5.7,11.1,14.3,18.7c0.6,0.5,1.5,0.5,2.1,0C26.3,21.5,32,16.5,32,10.4C32,4.7,27.3,0,23.6,0z"
+        fill="#f67280"/>
+      </svg>
+    </div>
+    <canvas class="letter-confetti" id="letter-confetti"></canvas>
+  </div>
+  <script>
+    // Letter confetti for overlay
+    function resizeLetterConfetti() {
+      const letter = document.getElementById('letter');
+      const canvas = document.getElementById('letter-confetti');
+      if (!letter || !canvas) return;
+      const rect = letter.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      canvas.style.width = rect.width + "px";
+      canvas.style.height = rect.height + "px";
+      canvas.style.left = letter.offsetLeft + "px";
+      canvas.style.top = letter.offsetTop + "px";
+    }
+
+    function launchLetterConfetti() {
+      const canvas = document.getElementById('letter-confetti');
+      const ctx = canvas.getContext('2d');
+      resizeLetterConfetti();
+      const colors = ['#f7c873', '#ff6f91', '#6fcf97', '#56ccf2', '#f67280', '#b388ff', '#ffd166'];
+      let pieces = [];
+      for (let i = 0; i < 60; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height,
+          w: 10 + Math.random() * 8,
+          h: 16 + Math.random() * 10,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: 1.5 + Math.random() * 2.5,
+          angle: Math.random() * 2 * Math.PI,
+          spin: 0.02 + Math.random() * 0.04
+        });
+      }
+      let frame = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let p of pieces) {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle + frame * p.spin);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+          ctx.restore();
+          p.y += p.speed;
+          if (p.y > canvas.height + 20) p.y = -20;
+        }
+        frame++;
+        if (frame < 120) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      draw();
+    }
+
+    // Show/hide hearts and confetti
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim().toLowerCase();
+      const letter = document.getElementById("letter");
+      const heartsBg = document.getElementById("hearts-bg");
+      const riddleBgClouds = document.getElementById("riddle-bg-clouds");
+      if (input === "endure") {
+        if (!letter.classList.contains("show")) {
+          letter.classList.add("show");
+          heartsBg.classList.add("show");
+          if (riddleBgClouds) riddleBgClouds.classList.add("hide");
+          setTimeout(() => {
+            resizeLetterConfetti();
+            launchLetterConfetti();
+          }, 300);
+        }
+      } else {
+        alert("Try again, my love!");
+      }
+    }
+
+    window.addEventListener('resize', function() {
+      const letter = document.getElementById('letter');
+      if (letter && letter.classList.contains('show')) {
+        resizeLetterConfetti();
+      }
+    });
+  </script>
+</body>
+</html>
